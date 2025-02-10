@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -8,7 +8,36 @@ import CardGuitar from "./components/Card/CardGuitar";
 
 function App() {
 
+  const initialCart=()=>{
+    const localStorageCart = localStorage.getItem("cart");
+    return localStorageCart? JSON.parse(localStorageCart): [];
+  }
+
   const [data] = useState(dataBase);
+  const [cart, setCart] = useState(initialCart);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, []);
+
+  const MIN_ITEMS = 1;
+  const MAX_ITEMS = 5;
+
+  //Agregar al carrito
+  function addToCart(){
+    const itemExists = cart.finIndex((quitar) => quitar.id === item.id);
+    if(itemExists >=0){
+      if(cart[itemExists].quantity >= MAX_ITEMS) return;
+      const updateCart = [... cart];
+      updateCart[itemExists].quantity++;
+      setCart(updateCart);
+    }else {
+      item.quantity =1;
+      setCart([... cart, item]);
+
+    }
+
+  }
 
   return (
     <>
@@ -17,24 +46,14 @@ function App() {
         <h2 className="text-center">Nuestra Colección</h2>
 
         <div className="row mt-5">
-          {/* {data.map((guitar) => (
-            <Guitar
-              key={guitar.id}
-              guitar={guitar}
-              setCart={setCart}
-              addToCart={addToCart}
-            />
-          ))} */}
           {
             data.map((guitar) => (
               <CardGuitar
                 key={guitar.id}
                 guitar={guitar}
-
+                addToCart={addToCart}
               />
-
             ))
-            
           }
 
         </div>
