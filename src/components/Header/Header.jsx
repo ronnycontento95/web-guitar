@@ -1,6 +1,11 @@
 import React from "react";
+import { useMemo } from 'react'
 
-export default function Header() {
+export default function Header({cart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart}) {
+  // State Derivado
+  const isEmpty = useMemo(() => cart.length === 0, [cart]);
+  const cartTotal = useMemo(() => cart.reduce((total, item) => total + item.quantity * item.price, 0),[cart]);
+
   return (
     <header className="py-5 header">
       <div className="container-xl">
@@ -22,8 +27,7 @@ export default function Header() {
                 alt="imagen carrito"
               />
 
-              {/* <div id="carrito" className="bg-white p-3">
-                {isEmpty ? (
+              <div id="carrito" className="bg-white p-3"> {isEmpty ? (
                   <p className="text-center">El carrito esta vacio</p>
                 ) : (
                   <>
@@ -92,7 +96,7 @@ export default function Header() {
                 >
                   Vaciar Carrito
                 </button>
-              </div> */}
+              </div>
             </div>
           </nav>
         </div>

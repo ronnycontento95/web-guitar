@@ -1,8 +1,23 @@
-# React + Vite
+## Project Description:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a web application developed in React that simulates a shopping cart. Users can add products to the cart, view the list of selected products, and manage its contents (remove products or modify quantities). Cart information is stored in the browser's localStorage, allowing data to persist even after reloading the page.
 
-Currently, two official plugins are available:
+## Key Features:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Add Products to Cart - Users can select products from a list and add them to the cart.
+
+Data Persistence - Uses localStorage to save the cart state, ensuring that data is not lost when reloading the page.
+
+Manage Cart - Users can remove products or update the quantities of products in the cart.
+
+Dynamic Interface - The interface is automatically updated when making changes to the cart, thanks to the use of state in React.
+
+## Technologies Used:
+
+React - to build the UI and manage state.
+
+JavaScript - for cart logic and DOM manipulation.
+
+localStorage: To store and retrieve cart data in the browser.
+
+CSS: For page layout and styling.
